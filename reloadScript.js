@@ -34,6 +34,8 @@
                                 padding: 10px;
                                 box-shadow: 5px 5px 15px black;
                                 width: 175px;
+                                z-index: 999999999999;
+                                background-color: #91b9b9;
                                 ">
                       <div>
                         現在時間 {{ nowTime.hour }}:{{ nowTime.minute }}:{{ nowTime.second }}
