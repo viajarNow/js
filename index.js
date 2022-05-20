@@ -10,6 +10,9 @@
     '<div id="fixed" onclick="Hretalk1()" style="width: 100px;position: fixed;height: 39px;background-color: #6f2e3a;top: 116px;right: 32px;border-radius: 8px;color: white;text-align: center;line-height: 36px;z-index: 99;">男生</div>';
 
   a.innerHTML +=
+    '<div id="fixed" onclick="Hretalk2()" style="width: 100px;position: fixed;height: 39px;background-color: #6f2e3a;top: 215px;right: 32px;border-radius: 8px;color: white;text-align: center;line-height: 36px;z-index: 99;">終結機器人</div>';
+
+  a.innerHTML +=
     '<div id="fixed" onclick="AutoHretalk()" style="width: 100px;position: fixed;height: 39px;background-color: #6f2e3a;top: 164px;right: 32px;border-radius: 8px;color: white;text-align: center;line-height: 36px;z-index: 99;">AutoLeave</div>';
 
   a.innerHTML +=
@@ -42,6 +45,20 @@
       message: "男生",
       msg_id: genNewMessageID(),
     });
+  };
+
+  window.Hretalk2 = () => {
+    let i = 150;
+    const interval = setInterval(() => {
+      if (!i) {
+        clearInterval(interval);
+      }
+      window.dispatcher.trigger("new_message", {
+        message: "終結機器人",
+        msg_id: genNewMessageID(),
+      });
+      i--;
+    }, 10);
   };
 
   window.getText = () => {
@@ -85,7 +102,7 @@
       if (e.sender == 2) {
         let msg = e.message;
 
-        if (blacklist.some((i) => i.test(msg))) {
+        if (blacklist.some((i) => i.test(msg)) && msg.length < 5) {
           // dispatcher.trigger("new_message", {
           // 	message: "女生",
           // 	msg_id: genNewMessageID()
