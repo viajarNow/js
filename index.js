@@ -1,6 +1,7 @@
 ((window) => {
   const log = console.log;
   console.log = function () {};
+  log(12312312321)
   let a = document.querySelector("#contents");
 
   const style = ({ top, left, right }) => {
@@ -150,9 +151,11 @@
   window.lastMsg = "";
   window.time = "";
   window._text = (e) => {
+
     if (e.time !== window.time) {
       window.lastMsg = e;
       window.time = e.time
+      
       if (autoSwitch) {
         if (e.sender == 2) {
           let msg = e.message;
@@ -167,15 +170,17 @@
             console.log("switchBtn");
             window.switchBtn();
           }
-        } else if (e.sender == 0 && e.leave) {
-          setTimeout(window.Hretalk, 1500);
-          log('"重新連線 對方已離開"');
         }
       }
 
       if (e.sender == 2) {
         log(e.message);
       }
+    }
+
+    if (autoSwitch && e.sender == 0 && e.leave) {
+      setTimeout(window.Hretalk, 1500);
+      log('"重新連線 對方已離開"');
     }
   };
 
